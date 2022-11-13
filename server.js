@@ -1,11 +1,21 @@
 import { ApolloServer, gql } from "apollo-server";
 
-// type Query is the mandatory part
-// below is same as /text and /hello in REST API
+// - type Query is the mandatory part
+// - Scalar & Non-scalar types
+
 const typeDefs = gql`
-    type Query {
+    type User {
+        id: ID
+        username: String
+    }
+    type Tweet {
+        id: ID
         text: String
-        hello: String
+        author: User
+    }
+    type Query {
+        allTweets: [Tweet]
+        allUsers: [User]
     }
 `;
 
